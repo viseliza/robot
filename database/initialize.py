@@ -1,4 +1,5 @@
 import sqlite3
+import logging
 
 def create_db():
     with sqlite3.connect("sqlite3.db") as con:
@@ -24,7 +25,7 @@ def create_db():
         """
 
 class User:
-    async def add(id: int, k):
+    async def add(id: int):
         pass
 
     async def get(id: int):
@@ -36,11 +37,26 @@ class User:
     async def delete(id: int):
         pass
 
+    async def exists(id: int):
+        # Пытаемся найти пользователя
+        exists = await User.get(id)
+
+        # Debug лог
+        logging.debug(f'UserExists: User={id}, Exists={bool(exists)}')
+
+        # Если не существует - добавляем
+        if not bool(exists):
+            await User.add(id)
+
+        # Возврат ответа
+        return exists
+
+
 class Group:
     async def add(id: int):
         pass
 
-    async def get(id: int):
+    async def get(name: str):
         pass
     
     async def update(id: int):

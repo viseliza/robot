@@ -9,9 +9,9 @@ class Keyboard:
     def main():
         keyboard = ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         
-        keyboard.add(
-            KeyboardButton('🛴 Test'), 
-            KeyboardButton('👤 Профиль')
-        )
+        keyboard.add(*[
+            '👨‍🎓 Выбор группы',
+            '👀 Просмотр замен'
+        ])
 
         return keyboard
